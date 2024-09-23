@@ -2,12 +2,19 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import { countries } from "../../data/countries";
 import styles from "./Form.module.css";
 import type { SearchType } from "../../types";
+import { Alert } from "../Alert/Alert";
 
-export const Form = () => {
+type FormProps = {
+    fetchWeather: (search: SearchType) => Promise<void>;
+};
+
+export const Form = ({ fetchWeather }: FormProps) => {
     const [search, setSearch] = useState<SearchType>({
         city: "",
         country: "",
     });
+
+    const [alert, setAlert] = useState("");
 
     const handleChange = (
         event: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>
@@ -20,12 +27,18 @@ export const Form = () => {
 
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+
         if (Object.values(search).includes("")) {
+            setAlert("All fileds are required.");
+            return;
         }
+
+        fetchWeather(search);
     };
 
     return (
         <form className={styles.form} onSubmit={handleSubmit}>
+            {alert && <Alert>{alert}</Alert>}
             <div className={styles.field}>
                 <label htmlFor="city">City:</label>
                 <input

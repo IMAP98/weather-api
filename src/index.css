@@ -10,7 +10,7 @@ html {
 
 body {
     font-family: "Outfit", sans-serif;
-    background-image: url("/public/bg_weather.jpg");
+    background-image: url("/bg_weather.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     height: 100hv;
