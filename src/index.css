@@ -13,7 +13,7 @@ body {
     background-image: url("/bg_weather.jpg");
     background-size: cover;
     background-repeat: no-repeat;
-    height: 100hv;
+    height: 100vh;
     color: var(--white);
     font-size: 2rem;
 }
